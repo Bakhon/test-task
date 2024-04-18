@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Factories\DatabaseFeedbackFactory;
 use App\Factories\FileFeedbackFactory;
 use App\Factories\FeedbackFactoryInterface;
+use App\Factories\CompositeFeedbackFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(FeedbackFactoryInterface::class, function ($app) {
-            return new DatabaseFeedbackFactory();
+            $databaseFactory = new DatabaseFeedbackFactory();
+            $fileFactory = new FileFeedbackFactory();
+        
+            return new CompositeFeedbackFactory($databaseFactory, $fileFactory);
         });
     }
 

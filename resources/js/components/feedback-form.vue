@@ -54,6 +54,7 @@ export default {
        // alert('Feedback submitted successfully');
       })
       .catch(error => {
+        console.log('err', error)
         if (error.response.status === 400) {
         alert('Error: ' + error.response.data.error);
     }

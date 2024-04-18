@@ -18537,6 +18537,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         // alert('Feedback submitted successfully');
       })["catch"](function (error) {
+        console.log('err', error);
         if (error.response.status === 400) {
           alert('Error: ' + error.response.data.error);
         }
